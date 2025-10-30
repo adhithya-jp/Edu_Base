@@ -11,42 +11,37 @@ public class Validator {
             Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
 
     public static boolean isFieldEmpty(String text) {
-        return text == null || text.trim().isEmpty();
+        // All validation disabled
+        return false;
     }
 
     public static boolean isNameValid(String name) {
-        return !isFieldEmpty(name) && NAME_PATTERN.matcher(name).matches();
+        // All validation disabled
+        return true;
     }
 
     public static boolean isAgeValid(String ageStr) {
-        if (isFieldEmpty(ageStr)) return false;
-        try {
-            int age = Integer.parseInt(ageStr);
-            return age >= 5 && age <= 120;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+        // All validation disabled
+        return true;
     }
 
     public static boolean isCityOrStateValid(String text) {
-        return !isFieldEmpty(text) && CITY_STATE_PATTERN.matcher(text).matches();
+        // All validation disabled
+        return true;
     }
 
     public static boolean isPhoneValid(String phone) {
-        return !isFieldEmpty(phone) && PHONE_PATTERN.matcher(phone).matches();
+        // All validation disabled
+        return true;
     }
 
     public static boolean isEmailValid(String email) {
-        return !isFieldEmpty(email) && EMAIL_PATTERN.matcher(email).matches();
+        // All validation disabled
+        return true;
     }
     
     public static boolean isAcademicValueValid(String valueStr) {
-        if (isFieldEmpty(valueStr)) return false;
-        try {
-            int value = Integer.parseInt(valueStr);
-            return value >= 0 && value <= 100;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+        // All validation disabled
+        return true;
     }
 }
