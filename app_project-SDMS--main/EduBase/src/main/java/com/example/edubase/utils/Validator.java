@@ -11,37 +11,56 @@ public class Validator {
             Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
 
     public static boolean isFieldEmpty(String text) {
-        // All validation disabled
-        return false;
+        return text == null || text.trim().isEmpty();
     }
 
     public static boolean isNameValid(String name) {
-        // All validation disabled
-        return true;
+        // Only check if the field is not empty - other validation disabled
+        return !isFieldEmpty(name);
     }
 
     public static boolean isAgeValid(String ageStr) {
-        // All validation disabled
-        return true;
+        // Check for empty field and numbers only
+        if (isFieldEmpty(ageStr)) return false;
+        try {
+            int age = Integer.parseInt(ageStr);
+            return age > 0;  // Just ensure it's a positive number
+        } catch (NumberFormatException e) {
+            return false;  // Not a valid number
+        }
     }
 
     public static boolean isCityOrStateValid(String text) {
-        // All validation disabled
-        return true;
+        // Only check if the field is not empty - other validation disabled
+        return !isFieldEmpty(text);
     }
 
     public static boolean isPhoneValid(String phone) {
-        // All validation disabled
-        return true;
+        // Only check if it's a valid number - other validation disabled
+        if (isFieldEmpty(phone)) return false;
+        try {
+            Long.parseLong(phone);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public static boolean isEmailValid(String email) {
-        // All validation disabled
-        return true;
+        // Basic check for @ symbol
+        if (isFieldEmpty(email)) return false;
+        int atCount = email.length() - email.replace("@", "").length();
+        return atCount == 1;  // Exactly one @ symbol
     }
     
     public static boolean isAcademicValueValid(String valueStr) {
-        // All validation disabled
-        return true;
+        // Check for empty field and numbers only
+        if (isFieldEmpty(valueStr)) return false;
+        try {
+            int value = Integer.parseInt(valueStr);
+            return value >= 0 && value <= 100;  // Keep the range check for grades
+        } catch (NumberFormatException e) {
+            return false;  // Not a valid number
+        }
     }
 }
